@@ -9,7 +9,6 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL
 );
 
-
 use todolist;
 CREATE TABLE tasks (
     id INT AUTO_INCREMENT PRIMARY KEY,
