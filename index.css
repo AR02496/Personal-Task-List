@@ -1,0 +1,195 @@
+/* ===============================
+   GLOBAL BACKGROUND
+================================ */
+.index-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #783595, #9b59b6);
+    padding: 30px 15px;
+}
+
+/* ===============================
+   CONTAINER UTAMA
+================================ */
+.index-container {
+    max-width: 950px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+/* ===============================
+   JUDUL
+================================ */
+.index-container h2 {
+    color: #783595;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* ===============================
+   FORM TASK 
+================================ */
+.task-form {
+    background-color: #f7f4fb;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.task-form .form-label {
+    font-weight: 600;
+    color: #783595;
+}
+
+.task-form .form-control {
+    border-radius: 8px;
+    border: 1px solid #d6c8e7;
+}
+
+.task-form .form-control:focus {
+    border-color: #783595;
+    box-shadow: 0 0 0 0.2rem rgba(120, 53, 149, 0.25);
+}
+
+/* ===============================
+   BUTTON ADD TASK
+================================ */
+.btn-add-task,
+.btn-purple {
+    background-color: #783595;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 8px 16px;
+    box-shadow: 0 6px 15px rgba(120, 53, 149, 0.4);
+    transition: 0.3s ease;
+}
+
+.btn-add-task:hover,
+.btn-purple:hover {
+    background-color: #5e2877;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   TABLE TASK
+================================ */
+.task-table {
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.task-table thead {
+    background-color: #783595;
+    color: #ffffff;
+}
+
+.task-table thead th {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+}
+
+.task-table td {
+    vertical-align: middle;
+}
+
+/* zebra stripe */
+.task-table tbody tr:nth-child(odd) {
+    background-color: #f3edf8;
+}
+
+
+
+/* ===============================
+   ACTION BUTTON DI TABEL
+================================ */
+.task-table .btn {
+    margin: 2px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 10px;
+}
+
+/* ===============================
+   TASK STATUS BADGE
+================================ */
+.task-status {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    min-width: 110px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* In Progress */
+.task-status.status-progress {
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+}
+
+/* Done */
+.task-status.status-done {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+/* ===============================
+   LOGOUT BUTTON
+================================ */
+.index-logout {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.index-logout button {
+    background-color: #783595;
+    color: white;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 6px 15px rgba(120, 53, 149, 0.4);
+    transition: 0.3s ease;
+}
+
+.index-logout button:hover {
+    background-color: #5e2877;
+    transform: scale(1.05);
+}
+
+/* ===============================
+   EMPTY STATE (OPSIONAL)
+================================ */
+.empty-task {
+    text-align: center;
+    padding: 40px;
+    color: #783595;
+    font-weight: 600;
+}
+
+.empty-task span {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+    .index-container {
+        padding: 18px;
+    }
+}
