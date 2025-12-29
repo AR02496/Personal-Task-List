@@ -2,23 +2,62 @@
 include("koneksi.php");
 
 $msg='';
-if(isset($_POST['submit'])){
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+
+if (isset($_POST['submit'])) {
+
+    $name      = trim($_POST['name']);
+    $email     = trim($_POST['email']);
+    $password  = $_POST['password'];
     $cpassword = $_POST['cpassword'];
 
-    $select1 = "SELECT * FROM users  WHERE email = '$email' AND password = '$password'";
-    $select_user = mysqli_query($koneksi,$select1);
-    if(mysqli_num_rows($select_user) > 0){
-        $msg = "user already exist!";
+    // 1. Check password confirmation
+    if ($password !== $cpassword) {
+        $msg = "Password and confirm password do not match!";
+    } else {
+
+        // 2. Check if email already exists
+        $stmt_check = mysqli_prepare(
+            $koneksi,
+            "SELECT id FROM users WHERE email = ?"
+        );
+        mysqli_stmt_bind_param($stmt_check, "s", $email);
+        mysqli_stmt_execute($stmt_check);
+        $result_check = mysqli_stmt_get_result($stmt_check);
+
+        if (mysqli_num_rows($result_check) > 0) {
+            $msg = "Email already exists!";
+        } else {
+
+            // 3. Hash password
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            // 4. Insert new user (prepared statement)
+            $stmt_insert = mysqli_prepare(
+                $koneksi,
+                "INSERT INTO users (name, email, password) VALUES (?, ?, ?)"
+            );
+            mysqli_stmt_bind_param(
+                $stmt_insert,
+                "sss",
+                $name,
+                $email,
+                $hashed_password
+            );
+
+            if (mysqli_stmt_execute($stmt_insert)) {
+                header("Location: login.php");
+                exit;
+            } else {
+                $msg = "Registration failed. Please try again.";
+            }
+
+            mysqli_stmt_close($stmt_insert);
+        }
+
+        mysqli_stmt_close($stmt_check);
     }
-    else{
-        $insert1="INSERT INTO users (`name`, `email`, `password`) VALUES ('$name', '$email', '$password')";
-        mysqli_query($koneksi, $insert1);
-        header('location:login.php');
-    }
-}
+}   
+    
 ?>
 
 <!DOCTYPE html>
