@@ -31,6 +31,23 @@ if (isset($_POST['submit'])) {
             $_SESSION['name']    = $se1['name'];
             $_SESSION['email']   = $se1['email'];
 
+            // ===== COOKIE (REMEMBER ME) =====
+            if (isset($_POST['remember'])) {
+                setcookie(
+                    "remember_email",
+                    $se1['email'],
+                    time() + (86400 * 7), // 7 days
+                    "/",
+                    "",
+                    false, // set true if using HTTPS
+                    true   // HttpOnly
+                );
+            } else {
+                // If checkbox not checked, delete cookie
+                setcookie("remember_email", "", time() - 3600, "/");
+            }
+            // ================================
+
             header("Location: index.php");
             exit;
         } else {
@@ -63,10 +80,22 @@ if (isset($_POST['submit'])) {
 
             
             <div class="form-group">
-                <input type="email" name="email" placeholder="Enter your email" class="form-control" required>
+                <input type="email" name="email" placeholder="Enter your email" class="form-control" value="<?= $_COOKIE['remember_email'] ?? '' ?>" required>
             </div>
            <div class="form-group">
                 <input type="password" name="password" placeholder="Enter your password" class="form-control" required>
+            </div>
+
+            <!-- Remember Me Checkbox -->
+            <div class="form-group form-check">
+                <input type="checkbox"
+                    name="remember"
+                    class="form-check-input"
+                    id="remember"
+                    <?= isset($_COOKIE['remember_email']) ? 'checked' : '' ?>>
+                <label class="form-check-label" for="remember">
+                    Remember Me
+                </label>
             </div>
             <button class="btn font-weight-bold" name="submit">Login Now</button>
             <p>Don't have an Account? <a href="register.php">Register Now</a></p>
@@ -75,3 +104,4 @@ if (isset($_POST['submit'])) {
 </body>
 
 </html>
+
