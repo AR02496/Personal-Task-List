@@ -16,7 +16,7 @@ CREATE TABLE tasks (
     task VARCHAR(255) NOT NULL,
     description TEXT,
     deadline DATE,
-    status TINYINT DEFAULT 0, //TINYINT (1) menjadi TINYINT
+    status TINYINT DEFAULT 0, --TINYINT (1) menjadi TINYINT
     CONSTRAINT fk_user_list
         FOREIGN KEY (user_id) REFERENCES users(id)
         ON DELETE CASCADE
