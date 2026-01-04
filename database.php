@@ -6,7 +6,7 @@ $username = 'root';
 $password = 'AsuKayang69';        
 $dbname = 'todolist';  
 
-$koneksi = mysqli_connect($host, $username, $password, $dbname);
+$koneksi = mysqli_connect($host, $username, $password, $dbname, $port);
 
 if (!$koneksi) {
     die("Error koneksi: " . mysqli_connect_error());
