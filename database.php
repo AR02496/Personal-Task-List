@@ -1,9 +1,10 @@
 <?php
 
 $host = 'localhost';
+$port = 3306;
 $username = 'root';    
-$password = '';        
-$dbname = 'db_todolist';  
+$password = 'AsuKayang69';        
+$dbname = 'todolist';  
 
 $koneksi = mysqli_connect($host, $username, $password, $dbname);
 
